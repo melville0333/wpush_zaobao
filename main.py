@@ -4,7 +4,7 @@ import requests
 
 # 获取早报信息
 def get_news():
-    alapi_token = os.getenv('alapi_token')
+    alapi_token = os.getenv('lTla4N2OG7MSOcA9')
     url = 'https://v2.alapi.cn/api/zaobao'
     params = {'token': alapi_token}
     response = requests.get(url, params=params)
@@ -18,7 +18,7 @@ def get_news():
 
 # 推送消息
 def push_message(title, content):
-    wpush_apikey = os.getenv('wpush_apikey')
+    wpush_apikey = os.getenv('WPUSHVzfq5fznBbg9QFELrhqa5Jic9l9')
     url = 'https://api.wpush.cn/api/v1/send'
     channel = os.getenv("channel", "wechat")
     if channel not in ["wechat", "sms", "mail", "feishu", "dingtalk", "webhook", "wechat_work"]:
