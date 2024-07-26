@@ -6,7 +6,7 @@ import requests
 def get_news():
     alapi_token = os.getenv('lTla4N2OG7MSOcA9')
     url = 'https://v2.alapi.cn/api/zaobao'
-    params = {'token': lTla4N2OG7MSOcA9}
+    params = {'token': alapi_token}
     response = requests.get(url, params=params)
     data = response.json()
     if data.get('code') == 200:
@@ -24,7 +24,7 @@ def push_message(title, content):
     if channel not in ["wechat", "sms", "mail", "feishu", "dingtalk", "webhook", "wechat_work"]:
         channel = "wechat"
 
-    params = {'apikey': WPUSHVzfq5fznBbg9QFELrhqa5Jic9l9, 'title': title, 'content': content, 'channel': channel}
+    params = {'apikey': wpush_apikey, 'title': title, 'content': content, 'channel': channel}
     response = requests.post(url, data=params)
     data = response.json()
     if data.get("code") == 0:
