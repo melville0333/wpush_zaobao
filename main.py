@@ -4,9 +4,9 @@ import requests
 
 # 获取早报信息
 def get_news():
-    alapi_token = 'lTla4N2OG7MSOcA9'
+    alapi_token = os.getenv('alapi_token')
     url = 'https://v2.alapi.cn/api/zaobao'
-    params = {'token': alapi_token}
+    params = {'lTla4N2OG7MSOcA9': alapi_token}
     response = requests.get(url, params=params)
     data = response.json()
     if data.get('code') == 200:
@@ -18,13 +18,13 @@ def get_news():
 
 # 推送消息
 def push_message(title, content):
-    wpush_apikey = 'WPUSHVzfq5fznBbg9QFELrhqa5Jic9l9'
+    wpush_apikey = os.getenv('wpush_apikey')
     url = 'https://api.wpush.cn/api/v1/send'
     channel = os.getenv("channel", "wechat")
     if channel not in ["wechat", "sms", "mail", "feishu", "dingtalk", "webhook", "wechat_work"]:
         channel = "wechat"
 
-    params = {'apikey': wpush_apikey, 'title': title, 'content': content, 'channel': channel}
+    params = {'WPUSHVzfq5fznBbg9QFELrhqa5Jic9l9': wpush_apikey, 'title': title, 'content': content, 'channel': channel}
     response = requests.post(url, data=params)
     data = response.json()
     if data.get("code") == 0:
@@ -36,7 +36,7 @@ def push_message(title, content):
 
 # 主函数
 def main():
-    if not os.getenv('lTla4N2OG7MSOcA9') or not os.getenv('WPUSHVzfq5fznBbg9QFELrhqa5Jic9l9'):
+    if not os.getenv('alapi_token') or not os.getenv('wpush_apikey'):
         print('请设置alapi_token和wpush_apikey环境变量！')
         return
     send_type = os.getenv("type", "image")
@@ -70,3 +70,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
