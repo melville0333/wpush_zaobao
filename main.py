@@ -36,7 +36,7 @@ def push_message(title, content):
 
 # 主函数
 def main():
-    if not os.getenv('alapi_token') or not os.getenv('wpush_apikey'):
+    if not os.getenv('lTla4N2OG7MSOcA9') or not os.getenv('WPUSHVzfq5fznBbg9QFELrhqa5Jic9l9'):
         print('请设置alapi_token和wpush_apikey环境变量！')
         return
     send_type = os.getenv("type", "image")
